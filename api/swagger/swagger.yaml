@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Charts
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /:
+    get:
+      summary: A Chart
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Chart'
+
+definitions:
+  Chart:
+    title: Chart labels and datasets
+    type: object
+    required:
+      - labels
+      - datasets
+    properties:
+      labels:
+        type: array
+        items:
+          type: string
+      datasets:
+        type: array
+        items:
+          $ref: '#/definitions/DataSet'
+
+  DataSet:
+    title: DataSet
+    type: object
+    required:
+      - data
+      - label
+    properties:
+      data:
+        type: array
+        items:
+          type: number
+      label:
+        type: string
