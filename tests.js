@@ -21,7 +21,7 @@ DAVIS	7	1072335	397.51	3970.33	64.73	30.77	0.4	0.79	1.73	1.58`;
 
 console.log(JSON.stringify(csvChart(b, {debug: true, delimiter: '\t'}), null, '  '));
 
-
+// Assume last line is invalid and should throw warning
 let c = `Col1|Col2|Col3
 1|2|3
 4|5|6
