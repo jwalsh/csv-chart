@@ -1,5 +1,8 @@
+let stoch = require('@jwalsh/stochastic');
+
 const defaultOptions = {
   debug: false,
+  summary: false,
   delimiter:',',
   headerLoc: 0,
   headerPrefix: '',
@@ -51,9 +54,25 @@ var exports = module.exports = (dw,
 
           const pctChange = (y1, y2) => parseFloat((((y2 - y1) / y1) * 100).toPrecision(2));
 
-          dataset.summary = {
-            change: pctChange(dataset.data[0], dataset.data[dataset.data.length - 1])
-          };
+          if (opts.summary) {
+            dataset.summary = {
+              average: parseFloat(stoch.average(dataset.data).toPrecision(4)),
+              median: (numbers => {
+                let median;
+                const len = numbers.length;
+                const sorted = numbers.sort();
+                if (len % 2 === 0) {
+                  median = (sorted[len / 2 - 1] + sorted[len / 2]) / 2;
+                } else {
+                  median = sorted[(len - 1) / 2];
+                }
+                return median;
+              })(dataset.data),
+              stdDev: parseFloat(stoch.std(dataset.data).toPrecision(4)),
+              change: pctChange(dataset.data[0], dataset.data[dataset.data.length - 1])
+            };
+          }
+
           return dataset;
         })
         .filter((e, i) => i !== 0)
