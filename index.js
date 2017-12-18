@@ -45,8 +45,15 @@ var exports = module.exports = (dw,
             'label': e
           };
           dataset.data = data.map(r => {
-            return r[i];
+            const datum = r[i];
+            return /^[0-9.]*$/.test(datum) ? parseFloat(datum) : datum;
           });
+
+          const pctChange = (y1, y2) => parseFloat((((y2 - y1) / y1) * 100).toPrecision(2));
+
+          dataset.summary = {
+            change: pctChange(dataset.data[0], dataset.data[dataset.data.length - 1])
+          };
           return dataset;
         })
         .filter((e, i) => i !== 0)
@@ -61,5 +68,6 @@ var exports = module.exports = (dw,
               }, false);
           return e;
         });
+
       return chart;
 };

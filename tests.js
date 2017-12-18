@@ -29,7 +29,7 @@ let c = `Col1|Col2|Col3
 a|b|c`;
 
 
-console.log(JSON.stringify(csvChart(c, {delimiter: '|'})| null| '  '));
+console.log(JSON.stringify(csvChart(c, {delimiter: '|'}), null, '  '));
 
 
 let d = `Symbol Total Share Volume
