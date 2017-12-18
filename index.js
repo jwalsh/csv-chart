@@ -11,13 +11,23 @@ var exports = module.exports = (dw,
       if (options.debug) {
         console.log(options);
       }
-      const table = dw.split(/[\r\n]+/);
+      const table = dw
+            .split(/[\r\n]+/)
+            .filter(e => e !== '');
+
       if (options.debug) {
         console.log(table);
       }
 
-      const header = table[options.headerLoc || 0].split(options.delimiter).map(e => e.trim()).filter(e => e !== '');
-      const data = table.splice(1).map(e => e.split(options.delimiter).map(e => e.trim()).filter(e => e !== ''));
+      const header = table[options.headerLoc || 0]
+            .split(options.delimiter)
+            .map(e => e.trim()).filter(e => e !== '');
+      const data = table
+            .splice(1)
+            .map(e => e
+                 .split(options.delimiter)
+                 .map(e => e.trim())
+                 .filter(e => e !== ''));
 
       let chart = { };
 
@@ -25,15 +35,27 @@ var exports = module.exports = (dw,
         return `${options.headerPrefix !== '' ? options.headerPrefix + ' ' : ''}${e[0]}`;
       });
 
-      chart.datasets = header.map((e, i) => {
-        let dataset = {
-          'label': e
-        };
-        dataset.data = data.map(r => {
-          return r[i];
+      chart.datasets = header
+        .map((e, i) => {
+          let dataset = {
+            'label': e
+          };
+          dataset.data = data.map(r => {
+            return r[i];
+          });
+          return dataset;
+        })
+        .filter((e, i) => i !== 0)
+        .map(e => {
+          let hasNaNData = e.data
+              .filter(d => {
+                return !/^[0-9.]*$/.test(d);
+              })
+              .map(e => console.log('WARN: Non-numerical data', e))
+              .reduce((p, c) => {
+                return true;
+              }, false);
+          return e;
         });
-        return dataset;
-      });
-
       return chart;
 };
