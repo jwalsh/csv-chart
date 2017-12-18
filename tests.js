@@ -151,7 +151,7 @@ let h = `DATE,MaoriMale,TotalMale,MaoriFemale,TotalFemale
 2002Q1,1907,6891,1853,6757
 2002Q2,1875,6713,1776,6438
 2002Q3,2007,7061,1801,6634
-2002Q4,1818,6912,1834,66a15
+2002Q4,1818,6912,1834,6615
 `;
 
 console.log(JSON.stringify(csvChart(h), null, '  '));
