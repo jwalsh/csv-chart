@@ -80,7 +80,7 @@ var exports = module.exports = (dw,
           let hasNaNData = e.data
               .filter(d => {
                 return !/^[0-9.]*$/.test(d);
-              })
+              }) // this doesn't allow for enum types of data
               .map(e => console.log('WARN: Non-numerical data', e))
               .reduce((p, c) => {
                 return true;

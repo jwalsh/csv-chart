@@ -18,8 +18,8 @@ JONES	5	1362755	505.17	3154.75	57.69	37.73	0.35	0.94	1.85	1.44
 MILLER	6	1127803	418.07	3572.82	85.81	10.41	0.42	0.63	1.31	1.43
 DAVIS	7	1072335	397.51	3970.33	64.73	30.77	0.4	0.79	1.73	1.58`;
 
-
 console.log(JSON.stringify(csvChart(b, {debug: true, delimiter: '\t'}), null, '  '));
+
 
 // Assume last line is invalid and should throw warning
 let c = `Col1|Col2|Col3
@@ -27,7 +27,6 @@ let c = `Col1|Col2|Col3
 4|5|6
 7|8|9
 a|b|c`;
-
 
 console.log(JSON.stringify(csvChart(c, {delimiter: '|'}), null, '  '));
 
@@ -155,3 +154,56 @@ let h = `DATE,MaoriMale,TotalMale,MaoriFemale,TotalFemale
 `;
 
 console.log(JSON.stringify(csvChart(h), null, '  '));
+
+
+// http://www.stat.cmu.edu/~larry/all-of-statistics/=data/glass.dat
+let i = `RI    Na   Mg   Al    Si    K    Ca   Ba   Fe  type
+1    3.01 13.64 4.49 1.10 71.78 0.06  8.75 0.00 0.00  WinF
+2   -0.39 13.89 3.60 1.36 72.73 0.48  7.83 0.00 0.00  WinF
+3   -1.82 13.53 3.55 1.54 72.99 0.39  7.78 0.00 0.00  WinF
+4   -0.34 13.21 3.69 1.29 72.61 0.57  8.22 0.00 0.00  WinF
+5   -0.58 13.27 3.62 1.24 73.08 0.55  8.07 0.00 0.00  WinF
+6   -2.04 12.79 3.61 1.62 72.97 0.64  8.07 0.00 0.26  WinF
+7   -0.57 13.30 3.60 1.14 73.09 0.58  8.17 0.00 0.00  WinF
+8   -0.44 13.15 3.61 1.05 73.24 0.57  8.24 0.00 0.00  WinF
+9    1.18 14.04 3.58 1.37 72.08 0.56  8.30 0.00 0.00  WinF
+10  -0.45 13.00 3.60 1.36 72.99 0.57  8.40 0.00 0.11  WinF
+11  -2.29 12.72 3.46 1.56 73.20 0.67  8.09 0.00 0.24  WinF
+12  -0.37 12.80 3.66 1.27 73.01 0.60  8.56 0.00 0.00  WinF`;
+
+// console.log(JSON.stringify(csvChart(i), null, '  '));
+
+
+// Description:
+// * The Montana poll asked a random sample of Montana residents whether
+// their personal financial status was the worse, the same, or better than
+// a year ago, and whether they thought the state economic outlook was
+// better over the next year. This file contains these items and
+// accompanying demographics about the respondents. The file contains
+// results for every other person included in the poll. *
+// Number of cases:
+// * 209 *
+// Variable Names:
+// *
+
+//    1. AGE = 1 under 35, 2 35-54, 3 55 and over
+//    2. SEX = 0 male, 1 female
+//    3. INC = yearly income: 1 under $20K, 2 20-35$K, 3 over $35K
+//    4. POL = 1 Democrat, 2 Independent, 3 Republican
+//    5. AREA = 1 Western, 2 Northeastern, 3 Southeastern Montana
+//    6. FIN = Financial status 1 worse, 2 same, 3 better than a year ago
+//    7. STAT = State economic outlook 1 better, 2 not better than a year ago
+
+let m=`AGE  SEX      INC      POL  AREA       FIN    STAT
+3	0	2	2	1	2	1
+2	0	3	3	1	3	1
+1	0	2	*	1	2	1
+3	1	2	1	1	1	0
+3	1	3	3	3	2	*
+1	0	2	1	3	3	*
+3	1	1	3	3	1	1
+1	0	1	3	2	1	0
+3	1	*	3	3	2	0
+1	0	*	1	1	2	1
+2	1	2	3	1	2	*
+3	1	1	3	2	2	0`;
