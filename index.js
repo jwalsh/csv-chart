@@ -43,12 +43,13 @@ var exports = module.exports = (dw,
       });
 
       chart.datasets = header
-        .map((e, i) => {
+        .map((e, ridx) => {
           let dataset = {
             'label': e
           };
+          // Data is out of order
           dataset.data = data.map(r => {
-            const datum = r[i];
+            const datum = r[ridx];
             return /^[0-9.]*$/.test(datum) ? parseFloat(datum) : datum;
           });
 
