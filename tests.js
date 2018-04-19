@@ -106,8 +106,7 @@ let f = `DATE,Arrivals,Departures
 2001M10,288592,240720
 2001M11,264907,250581
 2001M12,317906,289293
-2002M01,345696,319184
-`;
+2002M01,345696,319184`;
 
 console.log(JSON.stringify(csvChart(f), null, '  '));
 
@@ -131,8 +130,7 @@ let g = `Date,CapeTownMax,CapeTownMin,BuenosAriesMax,BuenosAriesMin,ParisMax,Par
 2001M03,27,13.7,26.7,19.6,12.4,5.6,5.9,7.1,14.4,5.7,29,19.5,23.3,14.6,17.7,10.9
 2001M04,24.3,12.2,22.7,14.3,13.1,5.7,19,5.1,20.4,11.3,26,15.9,20.1,13,18,10.1
 2001M05,22.1,9.6,17.1,10.8,20.6,10.7,22.4,9,23,16.4,23.6,11,17.8,12.3,21.4,14.3
-2001M06,19.1,7.8,16.8,9.8,22.8,11.8,31.2,13.5,26.6,20.3,22.5,9.9,15.4,7.1,23.3,16
-`;
+2001M06,19.1,7.8,16.8,9.8,22.8,11.8,31.2,13.5,26.6,20.3,22.5,9.9,15.4,7.1,23.3,16`;
 
 console.log(JSON.stringify(csvChart(g), null, '  '));
 
@@ -150,8 +148,7 @@ let h = `DATE,MaoriMale,TotalMale,MaoriFemale,TotalFemale
 2002Q1,1907,6891,1853,6757
 2002Q2,1875,6713,1776,6438
 2002Q3,2007,7061,1801,6634
-2002Q4,1818,6912,1834,6615
-`;
+2002Q4,1818,6912,1834,6615`;
 
 console.log(JSON.stringify(csvChart(h), null, '  '));
 
@@ -171,7 +168,7 @@ let i = `RI    Na   Mg   Al    Si    K    Ca   Ba   Fe  type
 11  -2.29 12.72 3.46 1.56 73.20 0.67  8.09 0.00 0.24  WinF
 12  -0.37 12.80 3.66 1.27 73.01 0.60  8.56 0.00 0.00  WinF`;
 
-// console.log(JSON.stringify(csvChart(i), null, '  '));
+console.log(JSON.stringify(csvChart(i, {delimiter: /[ ,]+/}), null, '  '));
 
 
 // Description:
@@ -193,7 +190,6 @@ let i = `RI    Na   Mg   Al    Si    K    Ca   Ba   Fe  type
 //    5. AREA = 1 Western, 2 Northeastern, 3 Southeastern Montana
 //    6. FIN = Financial status 1 worse, 2 same, 3 better than a year ago
 //    7. STAT = State economic outlook 1 better, 2 not better than a year ago
-
 let m=`AGE  SEX      INC      POL  AREA       FIN    STAT
 3	0	2	2	1	2	1
 2	0	3	3	1	3	1
@@ -207,3 +203,5 @@ let m=`AGE  SEX      INC      POL  AREA       FIN    STAT
 1	0	*	1	1	2	1
 2	1	2	3	1	2	*
 3	1	1	3	2	2	0`;
+
+console.log(JSON.stringify(csvChart(m, {delimiter: '\t'}), null, '  '));
